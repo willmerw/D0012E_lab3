@@ -32,7 +32,6 @@ class D:
                     check = True
 
         if self.parent is None and check:
-            print(self.value)
             new_root = self.reorder(self.in_order_walk())
             self.value = new_root.value
             self.l = new_root.l
