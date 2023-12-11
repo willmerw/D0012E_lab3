@@ -11,32 +11,30 @@ class D:
 
     def insert(self, val):
         self.size += 1
-        check = False
         if val >= self.value:
             if self.r is None:
                 self.r = D(self.c,val)
                 self.r.parent = self
-                return False
             else:
-                check = self.r.insert(val)
+                self.r.insert(val)
                 if self.r.size > (self.size * self.c):
-                    check = True
+                    new_root = self.reorder(self.in_order_walk())
+                    self.value = new_root.value
+                    self.l = new_root.l
+                    self.r = new_root.r
 
         elif val < self.value:
             if self.l is None:
                 self.l = D(self.c, val)
                 self.l.parent = self
             else:
-                check = self.l.insert(val)
+                self.l.insert(val)
                 if self.l.size > (self.size * self.c):
-                    check = True
+                    new_root = self.reorder(self.in_order_walk())
+                    self.value = new_root.value
+                    self.l = new_root.l
+                    self.r = new_root.r
 
-        if self.parent is None and check:
-            new_root = self.reorder(self.in_order_walk())
-            self.value = new_root.value
-            self.l = new_root.l
-            self.r = new_root.r
-        return check
 
 
 

@@ -5,45 +5,65 @@ from BST import BST
 from d import D
 import sys
 
-n = 10000
+n = 30000
 sys.setrecursionlimit(10**6)
 #data = random.sample(range(1, n+1), n)
 
-data = list(range(2, n+2))
 
-
-# d = D(0.8,1)
-# d_insert_times = []
-# for i in data:
-#     print(i)
-#     start_time = time.time()
-#     d.insert(i)
-#     end_time = time.time()
-#     delta_time = end_time-start_time
-#     print(delta_time)
-#     d_insert_times.append(delta_time)
-
-bst = BST(1)
 bst_insert_times = []
-bsts = []
-for i in range(10):
-    bsts.append(BST(1))
-items = list(range(1,n+1))
+d_insert_times = []
+items = []
+steps = list(range(1,n+1,100))
 avg_time = 0
 total_time = 0
-for i in data:
-    print(i)
-    for b in bsts:
-        start_time = time.time()
-        b.insert(i)
-        end_time = time.time()
-        delta_time = end_time-start_time
-        total_time = total_time + delta_time
-    avg_time = total_time / len(bsts)
-    bst_insert_times.append(avg_time)
-    total_time = 0
-plt.plot(items,bst_insert_times)
-#plt.plot(items,d_insert_times)
+
+c_steps = []
+c = 0.6
+
+# while c < 1:
+#     d = D(c,random.randint(1,n))
+#     data = random.sample(range(1, n+1), n)
+#     start_time = time.time()
+#     for i in data:
+#         print(i)
+#         d.insert(i)
+#     end_time = time.time()
+#     delta_time = end_time - start_time
+#     d_insert_times.append(delta_time)
+#     c_steps.append(c)
+#     c = c + 0.01
+#
+# plt.plot(c_steps,d_insert_times, label = "D")
+# plt.legend()
+# plt.show()
+
+
+
+for step in steps:
+    items.append(step)
+    bst = BST(random.randint(1,step))
+    data = random.sample(range(1, step), step-1)
+    start_time = time.time()
+    for i in data:
+        print(i)
+        bst.insert(i)
+    end_time = time.time()
+    delta_time = end_time-start_time
+    bst_insert_times.append(delta_time)
+
+    d = D(0.9,random.randint(1,n))
+    start_time = time.time()
+    for i in data:
+        print(i)
+        d.insert(i)
+    end_time = time.time()
+    delta_time = end_time - start_time
+    d_insert_times.append(delta_time)
+
+
+plt.plot(items,bst_insert_times, label = "BST")
+plt.plot(items,d_insert_times, label = "D")
+plt.legend()
 plt.show()
 
 
