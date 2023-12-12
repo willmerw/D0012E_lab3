@@ -73,40 +73,7 @@ class D:
         return root
 
 
-#test 1
-# root = D(0.501, 10)
-# root.insert(9)
-# root.insert(11)
-# root.insert(12)
-# root.insert(13)
-# root.insert(16)
-# root.insert(15)
-# print(root.value)
 
-#test 2
-# root = D(0.5, 10)
-# root.insert(11)
-# root.insert(9)
-# root.insert(8)
-# root.insert(7)
-# root.insert(3)
-# root.insert(4)
-# print(root.r.r.value)
-
-#test 3
-
-# root = D(0.5,12)
-# root.insert(10)
-# root.insert(9)
-# root.insert(15)
-# root.insert(13)
-
-#root.insert(11)
-#root.insert(16)
-#root.insert(8)
-#root.insert(7)
-
-#print(root.value)
 
 
 
